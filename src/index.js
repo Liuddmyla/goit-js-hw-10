@@ -17,6 +17,7 @@ function onInput(e) {
     if (value === '') {
         countryList.innerHTML = '';
         countryInfo.innerHTML = '';
+        return;
     }
 
     fetchCountries(value).then((data) => {
@@ -28,15 +29,13 @@ function onInput(e) {
 
         } else if (data.length > 1 && data.length <= 10) {
             countryInfo.innerHTML = '';
-            createMarkupList(data);
-                         
+            createMarkupList(data);                         
             
         } else if (data.length === 1) {
             countryList.innerHTML = '';
-           createMarkupCard(data);          
-
-        } else throw new Error('No data');
-        
+            createMarkupCard(data);
+        }
+                
     }).catch(onError);
 }
 
@@ -53,7 +52,7 @@ function createMarkupCard(data) {
     <p class="country-name-official">${name.official}</p>
     <div class="box-item"><p class="country-text">Capital:</p> <p>${capital}</p></div>
     <div class="box-item"><p class="country-text">Population:</p> <p>${population}</p> </div>
-    <div class="box-item"><p class="country-text">Languages:</p> <p>${Object.values(languages)}</p></div> ` + markupCard }, '');
+    <div class="box-item"><p class="country-text">Languages:</p> <p>${Object.values(languages).join(", ")}</p></div> ` + markupCard }, '');
     
     countryInfo.innerHTML = markupCard;
 }
