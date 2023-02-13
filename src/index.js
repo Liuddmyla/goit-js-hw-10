@@ -36,7 +36,7 @@ function onInput(e) {
             createMarkupCard(data);
         }
                 
-    }).catch(onError);
+    }).catch((err)=> console.log("Error!"));
 }
 
 function createMarkupList(data) {
@@ -57,6 +57,6 @@ function createMarkupCard(data) {
     countryInfo.innerHTML = markupCard;
 }
 
-function onError(err) {
-    Notiflix.Notify.failure("Oops, there is no country with that name");
-}
+// function onError(err) {
+//     Notiflix.Notify.failure("Oops, there is no country with that name");
+// }
